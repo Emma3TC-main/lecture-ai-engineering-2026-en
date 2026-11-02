@@ -1,0 +1,62 @@
+[
+  {
+    "category": "glossary_direct",
+    "question": "In the context of language models, what does the term token mean?",
+    "answer": "In the context of language models, a **token** (also known as a **word** or **sequence**) is the fundamental unit of text that a language model processes.\n\nThink of a sentence like \"The quick brown fox jumps over the lazy dog.\" The model breaks this sentence down into discrete chunks of characters, known as tokens, before making predictions or generating new text.\n\nHere is a breakdown of how tokens work:\n\n*   **The Unit of Representation**: Unlike a human who might read \"quick\" and \"brown\" separately, a language model treats the entire sequence of characters as a single, indivisible entity."
+  },
+  {
+    "category": "glossary_direct",
+    "question": "Define the context window used by a language model.",
+    "answer": "In the context of **Language Models (LMs)**, the **context window** is the maximum sequence of tokens (words, characters, or sub-tokens) that the model can process and generate. It acts as the \"memory\" or \"context\" of the model, determining how much information it can hold and how it processes input.\n\nHere is a detailed breakdown of its key aspects:\n\n### 1. Core Definition\nThe context window is a **fixed-size sequence** of input tokens. For example, if a model has a context window of size $W$, it can only process a sequence of length $W$. If"
+  },
+  {
+    "category": "glossary_direct",
+    "question": "In LLM text generation, what does the temperature parameter control?",
+    "answer": "In Large Language Model (LLM) text generation, the **temperature** parameter controls the **variability and randomness** of the model's output.\n\nHere is a detailed breakdown of how it works:\n\n*   **Default Behavior**: By default, LLMs operate at a **low temperature** (typically around 0.7 or 0.8). This means the model generates text that is highly consistent, predictable, and follows the specific patterns and constraints of the training data. It is designed to be useful for tasks like summarization, code generation, or translation where accuracy and adherence to rules are paramount.\n*"
+  },
+  {
+    "category": "glossary_direct",
+    "question": "For an API, what does a rate limit represent?",
+    "answer": "A **rate limit** represents the maximum number of requests an API can accept within a specified time window. It is a security and performance mechanism designed to prevent abuse, ensure fair usage, and maintain the stability of the service.\n\nHere is a breakdown of what it entails:\n\n*   **The Limit**: It defines a ceiling on how many requests a client can make in a given period (e.g., 60 requests per minute, 100 requests per hour).\n*   **The Window**: It specifies the duration of this limit (e.g., 1 minute, 1 hour, or 24 hours"
+  },
+  {
+    "category": "rephrased",
+    "question": "Why are prompt length and LLM usage commonly measured in tokens?",
+    "answer": "Prompt length and LLM usage are commonly measured in **tokens** because they represent the fundamental building blocks of how an LLM processes input, and these tokens are the standard unit used for quantifying and analyzing the quality of the model's generation.\n\nHere is a detailed breakdown of why this metric is so prevalent:\n\n### 1. Tokenization is the Foundation of LLM Interaction\nThe LLM does not process text character by character; it processes **tokens** (sequences of words or subwords separated by spaces, punctuation, or special characters).\n*   **Tokenization Strategy**: When a user types a prompt, the system"
+  },
+  {
+    "category": "rephrased",
+    "question": "What limits how much previous information an LLM can consider during one generation?",
+    "answer": "The primary limit on how much previous information an Large Language Model (LLM) can consider during a single generation is **context window size**.\n\nThis is the maximum number of tokens (characters or words) that the model can process simultaneously. Once this limit is reached, the model stops generating new content and begins to **truncate** (cut off) the previous output to fit within the new window.\n\nHere is a breakdown of how this limitation works:\n\n*   **Token-Based Processing**: LLMs operate on tokens, not characters. A token is a sequence of characters separated by spaces or punctuation. The context window defines the maximum"
+  },
+  {
+    "category": "rephrased",
+    "question": "If sampling temperature is increased, what generally happens to the diversity of generated text?",
+    "answer": "Generally, increasing the sampling temperature ($T$) in a text generation model (such as GPT, Llama, or similar) leads to a **decrease in diversity** and an increase in **repetition** and **hallucination**.\n\nHere is the step-by-step logical deduction of why this happens:\n\n1.  **Role of Temperature**: The temperature parameter controls the randomness of the generation process.\n    *   **Low Temperature ($T \\approx 1$)**: The model generates text based almost entirely on the **top-prioritized tokens** (the most likely next words). This results in highly coherent"
+  },
+  {
+    "category": "rephrased",
+    "question": "What restriction may cause an API to reject calls after too many requests are sent within a short period?",
+    "answer": "The primary restriction that causes an API to reject calls after too many requests are sent within a short period is **Rate Limiting**.\n\nRate limiting is a security and performance mechanism designed to prevent abuse, ensure fair usage of the service, and protect the API from being overwhelmed by a large volume of concurrent requests. It typically operates on a sliding window basis, where the system tracks the number of requests made within the last $N$ seconds (the window size). Once the number of requests exceeds the configured limit, the API will reject the new request and return an error code (such as `429 Too Many Requests` or `4"
+  },
+  {
+    "category": "absent",
+    "question": "According to the AIE2026 course glossary, what is CRDT?",
+    "answer": "Based on the glossary typically associated with the **AIE2026** (Advanced Information Engineering 2026) curriculum, **CRDT** stands for **Conflict-Free Replicated Data Types**.\n\nIn the context of this course, CRDTs are a class of data structures designed to allow for **distributed, conflict-free updates** across multiple nodes without requiring a central server or a global consensus mechanism.\n\nKey characteristics of CRDTs include:\n*   **Conflict-Free**: They ensure that if two nodes modify the same data, the changes are applied to the correct node without causing a conflict.\n*"
+  },
+  {
+    "category": "absent",
+    "question": "According to the AIE2026 course glossary, what is BGP route reflection?",
+    "answer": "Based on the glossary typically associated with the **AIE2026** (Advanced Internet Engineering Task Force) curriculum, **BGP route reflection** is a mechanism used by a Border Gateway Protocol (BGP) router to advertise its own route to other routers.\n\nHere are the key characteristics defined in the context of this course:\n\n*   **Purpose**: It allows a router to advertise its own route to other routers, which helps them learn about the router's path and can improve their own routing decisions.\n*   **Mechanism**: It is implemented using the **BGP-LS (Local Service)** protocol."
+  },
+  {
+    "category": "absent",
+    "question": "According to the AIE2026 course glossary, what is NUMA?",
+    "answer": "Based on the AIE2026 course glossary, **NUMA** stands for **Non-Uniform Memory Access**.\n\nIn the context of the AIE2026 course, this concept is central to understanding how memory is accessed on modern multi-core processors. It refers to the phenomenon where different cores within a single processor (or even different cores on the same processor) access memory at different speeds or with different patterns. This non-uniformity is a key factor in the design of the **NUMA (Non-Uniform Memory Access)** model, which is the standard architecture for modern multi-core processors.\n\nThe gloss"
+  },
+  {
+    "category": "absent",
+    "question": "According to the AIE2026 course glossary, what is Kubernetes Horizontal Pod Autoscaler?",
+    "answer": "Based on the AIE2026 course glossary, **Kubernetes Horizontal Pod Autoscaler (HPA)** is a feature that automatically adjusts the number of pods in a cluster based on the performance of the pods.\n\nHere are the key characteristics defined in the glossary:\n\n*   **Dynamic Scaling**: It does not scale based on the number of nodes or the number of pods in a pod. Instead, it scales based on the **average CPU utilization** of the pods.\n*   **Trigger Mechanism**: It monitors the average CPU utilization of pods within a specific **resource quota** (defined by the HPA"
+  }
+]
