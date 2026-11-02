@@ -1,0 +1,86 @@
+[
+  {
+    "category": "glossary_direct",
+    "question": "In the context of language models, what does the term token mean?",
+    "source_term": "Token",
+    "expected_answer": "The smallest unit an LLM uses to process text. Text is split into fragments of words or characters. API charges, rate limits, and context window sizes are often counted in tokens. Tokenization varies by language; for example, Japanese tends to require more tokens per character than English.",
+    "in_glossary": true
+  },
+  {
+    "category": "glossary_direct",
+    "question": "Define the context window used by a language model.",
+    "source_term": "Context window",
+    "expected_answer": "The maximum total number of input and output tokens an LLM can handle in one call. Conversation history and tool results must also fit within this limit, making the choice of what to pass to the model important.",
+    "in_glossary": true
+  },
+  {
+    "category": "glossary_direct",
+    "question": "In LLM text generation, what does the temperature parameter control?",
+    "source_term": "temperature",
+    "expected_answer": "A setting that adjusts randomness when choosing the next token. Lower values make outputs more stable; higher values make them more varied. This is one reason the same question can yield different answers.",
+    "in_glossary": true
+  },
+  {
+    "category": "glossary_direct",
+    "question": "For an API, what does a rate limit represent?",
+    "source_term": "Rate limit",
+    "expected_answer": "A limit on requests or tokens within a given time period. Exceeding it returns errors such as HTTP 429. Free tiers have particularly strict limits, and agents reach them easily because they call the LLM multiple times for one question.",
+    "in_glossary": true
+  },
+  {
+    "category": "rephrased",
+    "question": "Why are prompt length and LLM usage commonly measured in tokens?",
+    "source_term": "Token",
+    "expected_answer": "The smallest unit an LLM uses to process text. Text is split into fragments of words or characters. API charges, rate limits, and context window sizes are often counted in tokens. Tokenization varies by language; for example, Japanese tends to require more tokens per character than English.",
+    "in_glossary": true
+  },
+  {
+    "category": "rephrased",
+    "question": "What limits how much previous information an LLM can consider during one generation?",
+    "source_term": "Context window",
+    "expected_answer": "The maximum total number of input and output tokens an LLM can handle in one call. Conversation history and tool results must also fit within this limit, making the choice of what to pass to the model important.",
+    "in_glossary": true
+  },
+  {
+    "category": "rephrased",
+    "question": "If sampling temperature is increased, what generally happens to the diversity of generated text?",
+    "source_term": "temperature",
+    "expected_answer": "A setting that adjusts randomness when choosing the next token. Lower values make outputs more stable; higher values make them more varied. This is one reason the same question can yield different answers.",
+    "in_glossary": true
+  },
+  {
+    "category": "rephrased",
+    "question": "What restriction may cause an API to reject calls after too many requests are sent within a short period?",
+    "source_term": "Rate limit",
+    "expected_answer": "A limit on requests or tokens within a given time period. Exceeding it returns errors such as HTTP 429. Free tiers have particularly strict limits, and agents reach them easily because they call the LLM multiple times for one question.",
+    "in_glossary": true
+  },
+  {
+    "category": "absent",
+    "question": "According to the AIE2026 course glossary, what is CRDT?",
+    "source_term": null,
+    "expected_answer": "The term is not present in the AIE2026 course glossary.",
+    "in_glossary": false
+  },
+  {
+    "category": "absent",
+    "question": "According to the AIE2026 course glossary, what is BGP route reflection?",
+    "source_term": null,
+    "expected_answer": "The term is not present in the AIE2026 course glossary.",
+    "in_glossary": false
+  },
+  {
+    "category": "absent",
+    "question": "According to the AIE2026 course glossary, what is NUMA?",
+    "source_term": null,
+    "expected_answer": "The term is not present in the AIE2026 course glossary.",
+    "in_glossary": false
+  },
+  {
+    "category": "absent",
+    "question": "According to the AIE2026 course glossary, what is Kubernetes Horizontal Pod Autoscaler?",
+    "source_term": null,
+    "expected_answer": "The term is not present in the AIE2026 course glossary.",
+    "in_glossary": false
+  }
+]

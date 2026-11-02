@@ -1,0 +1,74 @@
+{
+  "experiment": "AIE2026 Lecture 02 Advanced - Glossary LoRA vs Retrieval",
+  "dataset": {
+    "source": "scripts/make_sft_dataset.py",
+    "examples": 116,
+    "format": "prompt/completion converted from messages",
+    "clean_examples": 116,
+    "rejected_examples": 0
+  },
+  "training": {
+    "base_model": "Qwen/Qwen3.5-0.8B",
+    "method": "LoRA",
+    "lora_r": 16,
+    "lora_alpha": 32,
+    "learning_rate": 0.0001,
+    "epochs": 3,
+    "steps": 45,
+    "training_seconds": 93,
+    "trainable_params": 6389760,
+    "trainable_percent": 0.8421,
+    "completion_only_loss": true,
+    "masked_prompt_tokens_sample": 17,
+    "supervised_completion_tokens_sample": 59,
+    "first_logged_loss": 3.646895,
+    "final_logged_loss": 1.704818
+  },
+  "evaluation": {
+    "questions": 12,
+    "glossary_direct": 4,
+    "rephrased": 4,
+    "absent": 4,
+    "before": {
+      "known_content_correct": 7,
+      "known_content_total": 8,
+      "source_boundary_correct": 0,
+      "source_boundary_total": 4,
+      "notable_failure": "Higher temperature was incorrectly described as decreasing diversity."
+    },
+    "after": {
+      "known_content_correct": 6,
+      "known_content_total": 8,
+      "source_boundary_correct": 0,
+      "source_boundary_total": 4,
+      "improvement": "The temperature paraphrase was corrected: higher temperature increased diversity.",
+      "regressions": [
+        "Context-window direct answer described only input tokens and introduced an unsupported 4096-token value.",
+        "Context-window paraphrase was confused with the output window."
+      ]
+    }
+  },
+  "retrieval": {
+    "method": "TF-IDF lexical glossary search",
+    "threshold_0_18": {
+      "correct_absence_detection": "4/4",
+      "found_present": "1/8",
+      "observation": "High precision/abstention but very low recall."
+    },
+    "threshold_0_05": {
+      "correct_absence_detection": "4/4",
+      "found_present": "8/8",
+      "correct_top1_present": "2/8",
+      "observation": "Recall increased, but lexical ranking produced many incorrect matches."
+    }
+  },
+  "failed_run": {
+    "epochs": 20,
+    "steps": 300,
+    "final_logged_loss": 0.072546,
+    "failure": "Degenerate repetitive generations such as user_question_question and repeated digits.",
+    "diagnosis": "The initial conversational SFT trained over the full sequence rather than only the assistant completion, combined with excessive updates.",
+    "correction": "Converted data to prompt/completion, enabled completion_only_loss, verified masking, and reduced training to 3 epochs / 45 steps."
+  },
+  "conclusion": "LoRA can modify and generalize glossary-related behavior, but does not provide reliable source-membership or absence verification and may introduce regressions. Retrieval provides explicit provenance and abstention, but a simple lexical TF-IDF implementation is sensitive to paraphrasing and requires better semantic retrieval or ranking."
+}
