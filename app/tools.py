@@ -3,7 +3,7 @@
 Function docstrings and type hints here become the "tool descriptions" presented to the model.
 Rewriting descriptions changes whether the model uses a tool and which arguments it supplies.
 """
-
+import random
 import json
 from functools import cache
 from pathlib import Path
@@ -77,3 +77,31 @@ def get_lecture_summary(lecture: int) -> str:
         available = sorted(p.stem for p in (DATA_DIR / "lectures").glob("*.md"))
         return f"Key points for Lecture {lecture:02d} are not available yet. Available sessions: {', '.join(available)}"
     return path.read_text(encoding="utf-8")
+
+
+def make_quiz(lecture: int) -> str:
+    """Create a review question from the course glossary for a given lecture.
+
+    Use this tool when a learner asks for a practice or review
+    question about a particular lecture. Pass the lecture number,
+    such as 2 for Lecture 02.
+    """
+    terms = [
+        entry
+        for entry in load_glossary()
+        if entry["lecture"] == lecture
+    ]
+
+    if not terms:
+        return f"No glossary terms found for Lecture {lecture:02d}."
+
+    selected = random.choice(terms)
+
+    return json.dumps(
+        {
+            "question": f"What does {selected['term']} mean?",
+            "answer": selected["definition"],
+            "lecture": lecture,
+        },
+        ensure_ascii=False,
+    )
