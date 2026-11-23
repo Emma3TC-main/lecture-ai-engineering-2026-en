@@ -1,0 +1,127 @@
+{
+  "version": "1.0.0",
+  "source": "AIE2026 Lecture 05 bundled main-material pages (Lectures 01-03)",
+  "methodology": "Reference pages and expected claims are human-verification aids, not model inputs. The held-out split must not be used to tune the retrieval policy.",
+  "questions": [
+    {
+      "id": "D01", "split": "development", "category": "single_topic", "answerable": true,
+      "question": "In Lecture 02, what does LoRA freeze and what does it train? What does QLoRA add?",
+      "reference_pages": ["lec02-main-p051", "lec02-main-p052"],
+      "expected_claims": ["LoRA keeps base weights frozen", "LoRA trains low-rank matrices A and B", "QLoRA stores frozen base weights at 4-bit precision"]
+    },
+    {
+      "id": "D02", "split": "development", "category": "multi_page", "answerable": true,
+      "question": "In the Lecture 03 examples, how does compaction differ from memory across sessions? Do all daily notes go into long-term memory?",
+      "reference_pages": ["lec03-main-p039", "lec03-main-p040"],
+      "expected_claims": ["Compaction summarizes history within a session", "External memory persists across sessions", "Only selected daily notes are promoted to long-term memory"]
+    },
+    {
+      "id": "D03", "split": "development", "category": "unanswerable", "answerable": false,
+      "question": "What are the measured average response time and accuracy of the RAG system we just built?",
+      "reference_pages": [],
+      "expected_claims": ["Cannot verify those measurements from Lectures 01–03; do not invent values"]
+    },
+    {
+      "id": "D04", "split": "development", "category": "cross_lecture", "answerable": true,
+      "question": "Compare LoRA and QLoRA adaptation in Lecture 02 with compaction and cross-session memory in Lecture 03. What changes or persists in each mechanism, and are the base model weights updated?",
+      "reference_pages": ["lec02-main-p052", "lec03-main-p039", "lec03-main-p065"],
+      "expected_claims": ["Base model weights remain frozen for LoRA and QLoRA", "Adapters A and B are trained", "Compaction changes runtime history", "External memory changes stored information rather than model parameters"]
+    },
+    {
+      "id": "H01", "split": "holdout", "category": "single_topic", "answerable": true,
+      "question": "How does Lecture 01 define AI engineering, and how is it different from developing a foundation model from scratch?",
+      "reference_pages": ["lec01-main-p004"],
+      "expected_claims": ["Build applications on available foundation models", "Adapt and evaluate existing models rather than train foundation models from scratch"]
+    },
+    {
+      "id": "H02", "split": "holdout", "category": "paraphrase", "answerable": true,
+      "question": "Why can a single pretrained general-purpose model support translation, vision, coding and other unrelated tasks?",
+      "reference_pages": ["lec01-main-p007"],
+      "expected_claims": ["Foundation models pretrain on diverse data", "A model can be adapted by prompting or fine-tuning to multiple tasks"]
+    },
+    {
+      "id": "H03", "split": "holdout", "category": "multi_page", "answerable": true,
+      "question": "Why should a lecture chatbot be evaluated repeatedly and by human reviewers rather than declared successful after a few plausible replies?",
+      "reference_pages": ["lec01-main-p035", "lec01-main-p040"],
+      "expected_claims": ["Outputs can vary across trials", "Human scoring is one evaluation method", "Plausible outputs are not a sufficient accuracy measurement"]
+    },
+    {
+      "id": "H04", "split": "holdout", "category": "multi_page", "answerable": true,
+      "question": "During problem formulation for a question-answering app, which inputs, outputs and evaluation checks should be defined before selecting a model?",
+      "reference_pages": ["lec01-main-p037", "lec01-main-p038", "lec01-main-p040"],
+      "expected_claims": ["Define inputs and outputs", "Establish evaluation criteria", "Assess feasibility and value"]
+    },
+    {
+      "id": "H05", "split": "holdout", "category": "single_topic", "answerable": true,
+      "question": "According to Lecture 02, why can the same prompt get different answers and why is a single correct run not enough?",
+      "reference_pages": ["lec02-main-p013"],
+      "expected_claims": ["Probabilistic next-token selection", "Repeat questions to measure variability", "A single successful output does not establish accuracy"]
+    },
+    {
+      "id": "H06", "split": "holdout", "category": "single_topic", "answerable": true,
+      "question": "Why should model selection use an evaluation set for our own tasks rather than just public leaderboard rankings?",
+      "reference_pages": ["lec02-main-p039"],
+      "expected_claims": ["Public benchmarks use differing conditions", "Use-case evaluations reveal answerability, cost and waiting time"]
+    },
+    {
+      "id": "H07", "split": "holdout", "category": "multi_page", "answerable": true,
+      "question": "A lecture bot needs new factual information and also a strict output format. What sequence of approaches should be tested before fine-tuning, and which issue favors RAG?",
+      "reference_pages": ["lec02-main-p046", "lec02-main-p050"],
+      "expected_claims": ["Create evaluation set first", "RAG is favored for knowledge updates", "Try instructions and examples before fine-tuning behavior"]
+    },
+    {
+      "id": "H08", "split": "holdout", "category": "single_topic", "answerable": true,
+      "question": "In the QLoRA exercise, how was format compliance defined and why was the same evaluation needed before and after training?",
+      "reference_pages": ["lec02-main-p060"],
+      "expected_claims": ["Outputs must parse as JSON and contain answer, slide and confidence", "Evaluate same questions before and after to measure effect"]
+    },
+    {
+      "id": "H09", "split": "holdout", "category": "multi_page", "answerable": true,
+      "question": "In Lecture 03, who chooses a tool call, who executes it, and how does the result become available for the next step?",
+      "reference_pages": ["lec03-main-p012", "lec03-main-p014"],
+      "expected_claims": ["Model proposes an action/tool call", "Harness executes tool", "Tool results return to model context"]
+    },
+    {
+      "id": "H10", "split": "holdout", "category": "single_topic", "answerable": true,
+      "question": "If an agent has independent 95 percent success per step, what approximate chance does Lecture 03 give for finishing 20 steps successfully?",
+      "reference_pages": ["lec03-main-p019"],
+      "expected_claims": ["Approximately 36 percent for 20 independent steps", "The lecture labels independence as a simplifying assumption"]
+    },
+    {
+      "id": "H11", "split": "holdout", "category": "multi_page", "answerable": true,
+      "question": "Why should an agent get approval before sending an irreversible email, and how could retrying after a lost success response cause duplicate actions?",
+      "reference_pages": ["lec03-main-p025", "lec03-main-p027"],
+      "expected_claims": ["Human approval for irreversible actions", "A lost response can cause retry even after successful send", "Duplicate non-idempotent actions are possible"]
+    },
+    {
+      "id": "H12", "split": "holdout", "category": "single_topic", "answerable": true,
+      "question": "What three types of stopping mechanism for an AI agent loop are described in Lecture 03?",
+      "reference_pages": ["lec03-main-p043"],
+      "expected_claims": ["Model decides to stop", "Harness enforces time, failure or budget limits", "Human or monitor stops externally"]
+    },
+    {
+      "id": "H13", "split": "holdout", "category": "multi_page", "answerable": true,
+      "question": "How can files in a cloned repository become untrusted instructions for a coding agent, and what safeguards does Lecture 03 recommend?",
+      "reference_pages": ["lec03-main-p050", "lec03-main-p051"],
+      "expected_claims": ["Configuration or skill files may contain instructions written by third parties", "Inspect files before trusting them", "Limit permissions and review memory"]
+    },
+    {
+      "id": "H14", "split": "holdout", "category": "cross_lecture", "answerable": true,
+      "question": "How does the AI engineering evaluation mindset from Lecture 01 relate to the fine-tuning decision sequence in Lecture 02?",
+      "reference_pages": ["lec01-main-p035", "lec02-main-p050"],
+      "expected_claims": ["Measure and analyze failure before changes", "Try low-cost interventions before deciding to fine-tune", "Measure again after intervention"]
+    },
+    {
+      "id": "H15", "split": "holdout", "category": "unanswerable", "answerable": false,
+      "question": "What exact median API latency did our specific lecture chatbot achieve in its November 21, 2026 production deployment?",
+      "reference_pages": [],
+      "expected_claims": ["No production deployment timing logs are present in the provided lecture materials; abstain rather than guessing"]
+    },
+    {
+      "id": "H16", "split": "holdout", "category": "paraphrase", "answerable": true,
+      "question": "When conversation history is shortened to fit context, does that become a lasting learned parameter change? How could yesterday's notes still be available tomorrow?",
+      "reference_pages": ["lec03-main-p013", "lec03-main-p039", "lec03-main-p065"],
+      "expected_claims": ["Compaction summarizes runtime history without changing weights", "External storage saves records for later sessions", "Remembering is not model training"]
+    }
+  ]
+}
