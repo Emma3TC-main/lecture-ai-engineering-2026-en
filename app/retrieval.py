@@ -225,6 +225,75 @@ def search_graph(query: str) -> dict:
 
 
 
+
+def search_with_neighbors(query: str, radius: int = 1) -> list[dict]:
+    """Return vector hits and unique adjacent pages from the same document.
+
+    Vector hits remain first. Added pages are labeled as adjacent evidence,
+    rather than being assigned a similarity distance they did not receive.
+    """
+    if not isinstance(radius, int) or not 1 <= radius <= 3:
+        raise ValueError("radius must be an integer between 1 and 3")
+
+    seeds = search(query)
+    grouped = defaultdict(list)
+
+    for page in load_pages(RAG_SOURCE):
+        grouped[page["document_id"]].append(page)
+
+    locations = {
+        page["page_id"]: (document_id, index)
+        for document_id, pages in grouped.items()
+        for index, page in enumerate(pages)
+    }
+
+    results, seen = [], set()
+
+    for seed in seeds:
+        page_id = seed["page_id"]
+        if page_id not in seen:
+            seen.add(page_id)
+            results.append({
+                **seed,
+                "retrieval_origin": "vector",
+                "seed_page_id": page_id,
+            })
+
+    for seed in seeds:
+        page_id = seed["page_id"]
+
+        if page_id not in locations:
+            continue
+
+        document_id, index = locations[page_id]
+        document_pages = grouped[document_id]
+
+        for hop in range(1, radius + 1):
+            for offset in (-hop, hop):
+                position = index + offset
+
+                if not 0 <= position < len(document_pages):
+                    continue
+
+                neighbor = document_pages[position]
+                neighbor_id = neighbor["page_id"]
+
+                if neighbor_id in seen:
+                    continue
+
+                seen.add(neighbor_id)
+
+                results.append({
+                    **neighbor,
+                    "retrieval_origin": "adjacent",
+                    "seed_page_id": page_id,
+                    "page_offset": offset,
+                })
+
+    return results
+
+
+
 def run_full_context(agent, question: str, model, instructions: str, prompt_template: str):
     """Pass all materials at once and answer without retrieval tools."""
     prompt = prompt_template.format(materials=get_all_materials(), question=question)
