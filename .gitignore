@@ -15,3 +15,5 @@ learning_log/
 
 # Lecture 05: search databases regenerated from the materials
 .cache/rag/
+
+/.day5_benchmark_outputs/

@@ -1,0 +1,49 @@
+{
+  "protocol": "day5-exploratory-probes-v1",
+  "purpose": "Independent development-only diagnostic questions. Never used as holdout or supplied to retrieval agents.",
+  "annotation_status": "provisional_reference_pages_manual_review_required",
+  "probes": [
+    {
+      "id": "P01",
+      "category": "cross_lecture",
+      "question": "Why can one successful trial of a lecture-question chatbot be misleading, and what should engineers evaluate instead?",
+      "reference_pages": ["lec01-main-p035", "lec02-main-p013"],
+      "evidence_rationale": "Lecture 1 requires iterative evaluation; Lecture 2 demonstrates probabilistic variation across trials."
+    },
+    {
+      "id": "P02",
+      "category": "multi_page",
+      "question": "A chatbot needs consistent JSON output and also current factual knowledge. Which improvement methods should be tried for each need, and what evaluation should come first?",
+      "reference_pages": ["lec02-main-p046", "lec02-main-p050"],
+      "evidence_rationale": "Lecture 2 distinguishes behavior adaptation from knowledge retrieval and gives the evaluation-first decision sequence."
+    },
+    {
+      "id": "P03",
+      "category": "multi_page",
+      "question": "An agent sends an email, loses the success response, and sends it again. Explain the failure mode and when a human should approve such an action.",
+      "reference_pages": ["lec03-main-p025", "lec03-main-p027"],
+      "evidence_rationale": "Lecture 3 discusses human approval for irreversible actions and repeated non-idempotent tool calls."
+    },
+    {
+      "id": "P04",
+      "category": "multi_page",
+      "question": "Distinguish in-session compaction from persistent memory across sessions. How are daily notes promoted to long-term memory, and do either mechanism update model weights?",
+      "reference_pages": ["lec03-main-p039", "lec03-main-p040", "lec03-main-p065"],
+      "evidence_rationale": "Lecture 3 shows compaction and external storage, selective nightly memory, and unchanged weights."
+    },
+    {
+      "id": "P05",
+      "category": "multi_page",
+      "question": "Why can instruction files in cloned repositories and stored agent memory create prompt-injection risks, and what trust boundary checks are recommended?",
+      "reference_pages": ["lec03-main-p050", "lec03-main-p051"],
+      "evidence_rationale": "Lecture 3 documents instruction and memory attack surfaces plus trust boundary controls."
+    },
+    {
+      "id": "P06",
+      "category": "cross_lecture",
+      "question": "How is the increasing length of tasks an AI model can handle different from error accumulation across a long sequence of agent actions?",
+      "reference_pages": ["lec01-main-p009", "lec03-main-p019"],
+      "evidence_rationale": "Lecture 1 discusses measured task horizons, while Lecture 3 illustrates compounding step errors."
+    }
+  ]
+}
