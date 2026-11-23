@@ -33,7 +33,7 @@ from typing import Any, Iterator
 ROOT = Path(__file__).resolve().parents[1]
 DATASET_PATH = ROOT / "data" / "day5_benchmark" / "questions.json"
 OUTPUT_DIR = ROOT / ".day5_benchmark_outputs"
-METHODS = ("vector", "neighbors", "graph", "selective")
+METHODS = ("vector", "neighbors", "graph", "selective", "hybrid")
 SPLITS = ("development", "holdout", "all")
 CATEGORIES = {"single_topic", "multi_page", "cross_lecture", "unanswerable", "paraphrase"}
 
@@ -179,6 +179,7 @@ def source_fingerprint() -> dict:
     paths = [
         ROOT / "app" / "retrieval.py",
         ROOT / "app" / "advanced_retrieval.py",
+        ROOT / "app" / "hybrid_retrieval.py",
         ROOT / "app" / "agent.py",
         ROOT / "app" / "config.py",
         ROOT / "scripts" / "day5_benchmark.py",
@@ -208,6 +209,9 @@ def retrieve_method(method: str, query: str) -> list[dict]:
         from app.advanced_retrieval import search_graph_selective
 
         return flatten_pages(search_graph_selective(query))
+    if method == "hybrid":
+        from app.hybrid_retrieval import search_hybrid
+        return flatten_pages(search_hybrid(query))
     raise ValueError(f"Unknown retrieval method: {method}")
 
 
@@ -357,7 +361,7 @@ def build_agent(method: str):
         agent.tool_plain(search_materials)
         return agent
 
-    if method in ("graph", "selective"):
+    if method in ("graph", "selective", "hybrid"):
         instructions = GRAPH_INSTRUCTIONS
 
         def search_graph(query: str) -> str:
@@ -368,6 +372,9 @@ def build_agent(method: str):
             if method == "graph":
                 from app.retrieval import search_graph as original_graph
                 return json.dumps(original_graph(query), ensure_ascii=False)
+            if method == "hybrid":
+                from app.hybrid_retrieval import search_hybrid
+                return json.dumps(search_hybrid(query), ensure_ascii=False)
             from app.advanced_retrieval import search_graph_selective
             return json.dumps(search_graph_selective(query), ensure_ascii=False)
 
